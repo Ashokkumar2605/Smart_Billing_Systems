@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VeGGies Restaurant</title>
+  <link rel="stylesheet" href="Billing.CSS">
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <h1>VeGGies Restaurant</h1>
+      <p>Fresh South Indian Food</p>
+    </div>
+    <div class="hero-actions">
+      <button id="payNowTop" class="primary">Pay Now</button>
+      <button id="printTop" class="secondary">Print Bill</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel menu-panel">
+      <div class="panel-header">
+        <h2>Menu</h2>
+        <button id="addMenuBtn" class="secondary">Add Item</button>
+      </div>
+      <div id="menuList" class="menu-grid"></div>
+    </section>
+
+    <section class="panel cart-panel">
+      <h2>Cart & Billing</h2>
+      <div id="cartList" class="cart-list empty">Cart is empty</div>
+      <div class="totals">
+        <div><span>Subtotal</span><strong id="subtotal">₹0.00</strong></div>
+        <div class="total"><span>Total</span><strong id="total">₹0.00</strong></div>
+      </div>
+      <div class="cart-actions">
+        <button id="clearCart" class="danger">Clear Cart</button>
+        <button id="printBill" class="secondary">Print Bill</button>
+        <button id="payNow" class="primary">Pay Now</button>
+      </div>
+    </section>
+  </main>
+
+  <section class="panel manage-panel">
+    <h2>Manage Menu</h2>
+    <form id="menuForm">
+      <input type="hidden" id="itemId">
+      <label>
+        Item Name
+        <input type="text" id="itemName" required>
+      </label>
+      <label>
+        Price (₹)
+        <input type="number" id="itemPrice" min="1" step="1" required>
+      </label>
+      <label class="full-row">
+        Description
+        <textarea id="itemDesc" rows="2" placeholder="Optional short note"></textarea>
+      </label>
+      <div class="form-actions">
+        <button type="submit" class="primary" id="saveItem">Save Item</button>
+        <button type="button" id="cancelEdit" class="secondary">Cancel</button>
+      </div>
+    </form>
+    <table id="menuTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price (₹)</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section class="panel report-panel">
+    <div class="panel-header">
+      <h2>Monthly Sales Report</h2>
+      <select id="monthSelector"></select>
+    </div>
+    <div class="report-summary">
+      <div><span>Total Orders</span><strong id="reportOrders">0</strong></div>
+      <div><span>Total Revenue</span><strong id="reportRevenue">₹0.00</strong></div>
+    </div>
+    <table id="reportTable">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Sales (₹)</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <div id="qrModal" class="modal hidden">
+    <div class="modal-content">
+      <button class="close" id="closeModal">×</button>
+      <h3>Scan & Pay</h3>
+      <p>Use any UPI app to scan the QR and complete payment.</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=veggies@upi" alt="UPI QR Code">
+      <button id="confirmPayment" class="primary">Payment Received</button>
+    </div>
+  </div>
+
+  <template id="menuCardTemplate">
+    <button class="menu-card">
+      <div class="menu-card-info">
+        <h3></h3>
+        <p></p>
+      </div>
+      <span class="price"></span>
+    </button>
+  </template>
+
+  <template id="cartItemTemplate">
+    <div class="cart-item">
+      <div>
+        <strong class="cart-name"></strong>
+        <span class="cart-price"></span>
+      </div>
+      <div class="cart-controls">
+        <button class="qty-btn" data-action="decrease">−</button>
+        <span class="cart-qty"></span>
+        <button class="qty-btn" data-action="increase">+</button>
+        <button class="remove-btn" data-action="remove">Remove</button>
+      </div>
+    </div>
+  </template>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
