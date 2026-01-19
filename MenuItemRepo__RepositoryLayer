@@ -1,0 +1,7 @@
+package com.example.Smart_Billing_System_.repository;
+
+import com.example.Smart_Billing_System_.entity.MenuItem;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MenuItemRepository extends JpaRepository<MenuItem, Long> {
+}
