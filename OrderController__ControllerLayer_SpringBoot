@@ -1,0 +1,34 @@
+package com.example.Smart_Billing_System_.controller;
+
+import com.example.Smart_Billing_System_.entity.Order;
+import com.example.Smart_Billing_System_.service.OrderService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/orders")
+@CrossOrigin
+public class OrderController {
+
+    private final OrderService service;
+
+    public OrderController(OrderService service) {
+        this.service = service;
+    }
+
+    // Save order when payment received
+    @PostMapping
+    public Order placeOrder(@RequestBody Order order) {
+        return service.saveOrder(order);
+    }
+
+    // Monthly sales report
+    @GetMapping("/monthly")
+    public List<Order> getMonthlyReport(
+            @RequestParam int year,
+            @RequestParam int month) {
+
+        return service.getMonthlyOrders(year, month);
+    }
+}
