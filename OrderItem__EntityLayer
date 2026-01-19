@@ -1,0 +1,26 @@
+package com.example.Smart_Billing_System_.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Table(name = "order_items")
+@Data
+public class OrderItem {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String itemName;
+
+    private double price;
+
+    private int quantity;
+
+    private double total;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+}
