@@ -1,0 +1,13 @@
+package com.example.Smart_Billing_System_;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SmartBillingSystemApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SmartBillingSystemApplication.class, args);
+	}
+
+}
