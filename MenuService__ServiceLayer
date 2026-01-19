@@ -1,0 +1,29 @@
+package com.example.Smart_Billing_System_.service;
+
+import com.example.Smart_Billing_System_.entity.MenuItem;
+import com.example.Smart_Billing_System_.repository.MenuItemRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class MenuService {
+
+    private final MenuItemRepository repo;
+
+    public MenuService(MenuItemRepository repo) {
+        this.repo = repo;
+    }
+
+    public List<MenuItem> getAllItems() {
+        return repo.findAll();
+    }
+
+    public MenuItem saveItem(MenuItem item) {
+        return repo.save(item);
+    }
+
+    public void deleteItem(Long id) {
+        repo.deleteById(id);
+    }
+}
